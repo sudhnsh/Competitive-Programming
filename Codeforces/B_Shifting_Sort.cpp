@@ -9,54 +9,56 @@ void solve()
 {
     ll n;
     cin>>n;
-
-    vector<ll> arr(n);
+    vector<ll> v(n);
     rep(i,0,n)
-    cin>>arr[i];
-    vector< vector<ll> > ans;
-    ll maxpos=-1;
-        ll maxele=INT_MIN;
-    for(int i=n-1;i>0;i--){
-        maxpos=-1;
-        maxele=INT_MIN;  
-
-        for(int j=0;j<=i;j++){
-            if(arr[j]>maxele){
-                maxele=arr[j];
-                maxpos=j;
-            }
-        }
-        if(maxpos<i){
-            vector<ll> tt;
-            queue<ll> q;
-            tt.push_back(maxpos+1);
-            tt.push_back(i+1);
-            tt.push_back(1);
-            ans.push_back(tt);
-            for(int j=maxpos;j<=i;j++){
-                q.push(arr[j]);
-            }
-            ll zzz;
-            if(!q.empty()){
-                zzz=q.front();
-                q.pop();
-                q.push(zzz);
-            }
-            for(int j=maxpos;j<=i;j++){
-                if(!q.empty()){
-                zzz=q.front();
-                q.pop();
-                arr[j]=zzz;
-                }
+    {
+        cin>>v[i];
+    }    
+    vector<ll> v1=v;
+    sort(v1.begin(),v1.end());
+    vector< pair<ll,ll> > mp;
+    rep(i,0,n)
+    {
+        mp.push_back(make_pair(v1[i],i));
+    }
+    vector<ll> f,g;
+    rep(i,0,n)
+    {
+        rep(j,i+1,n)
+        {
+            if(mp[i].first==v[j])
+            {
+                //cout<<j<<' ';
+                ll x=v[j];
+                // cout<<j<<'\n';
+                // rep(k,0,n)
+                // {
+                //     cout<<v[k]<<' ';
+                // }
+                // cout<<'\n';
+                // cout<<x<<'\n';
+                f.push_back(i+1);
+                g.push_back(j+1);
+                for(int k=j;k>i;k--)
+                {
+                    v[k]=v[k-1];
+                }                
+                v[i]=x;
+                break;
             }
         }
     }
-    cout<<ans.size()<<'\n';
-    for(int i=0;i<ans.size();i++){
-        for(int j=0;j<3;j++){
-            cout<<ans[i][j]<<" ";
-        }cout<<'\n';
+    // rep(k,0,n)
+    //             {
+    //                 cout<<v[k]<<' ';
+    //             }
+    //             cout<<'\n';
+    cout<<f.size();
+    rep(i,0,f.size())
+    {
+        cout<<'\n'<<f[i]<<' '<<g[i]<<' '<<g[i]-f[i];
     }
+    cout<<'\n';
 
 }
 int main()
