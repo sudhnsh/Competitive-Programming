@@ -2,7 +2,7 @@
 using namespace std;
 #define ll long long
 #define rep(i, a, n) for (ll i = a; i < n; i++)
-#define rrep(i,n,a) for(ll i=a;i>n;i--)
+#define rrep(i,n,a)  for(ll i=a;i>n;i--)
 #define ffst                          \
     ios_base::sync_with_stdio(false); \
     cin.tie(NULL);
