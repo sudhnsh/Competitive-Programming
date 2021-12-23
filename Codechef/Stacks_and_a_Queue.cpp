@@ -10,7 +10,7 @@ void printq(queue<ll> q)
 {
     if (q.empty())
         return;
-    //cout<<'q'<<' ';
+    // cout<<'q'<<' ';
     while (!q.empty())
     {
         cout << q.front() << ' ';
@@ -25,7 +25,7 @@ void printst(stack<ll> s)
     {
         return;
     }
-   // cout<<'s'<<' ';
+    // cout<<'s'<<' ';
     while (!s.empty())
     {
         cout << s.top() << ' ';
@@ -60,7 +60,7 @@ void solve()
         }
         else
         {
-            if (ele-s1.top() < s2.top()-ele)
+            if (ele - s1.top() < s2.top() - ele)
             {
                 while (!s1.empty() && s1.top() <= ele)
                 {
@@ -71,19 +71,19 @@ void solve()
                 printq(q);
                 printst(s1);
                 printst(s2);
-                rep(i, 0, q.size() - 1)
+                while (!q.empty())
                 {
-                    q.push(q.front());
-                    q.pop();
-                }
-                while(!q.empty())
-                {
+                    rep(i, 0, q.size() - 1)
+                    {
+                        ll h = q.front();
+                        q.push(h);
+                        q.pop();
+                    }
                     s1.push(q.front());
                     q.pop();
                 }
-
             }
-            else if ( ele-s1.top()  > s2.top()-ele)
+            else if (ele - s1.top() > s2.top() - ele)
             {
                 while ((!s2.empty()) && s2.top() >= ele)
                 {
@@ -94,19 +94,18 @@ void solve()
                 printq(q);
                 printst(s1);
                 printst(s2);
-                rep(i, 0, q.size() - 1)
-                {
-                    q.push(q.front());
-                    q.pop();
-                }
                 while (!q.empty())
                 {
+                    rep(i, 0, q.size() - 1)
+                    {
+                        q.push(q.front());
+                        q.pop();
+                    }
                     s2.push(q.front());
                     q.pop();
                 }
             }
         }
-        
     }
     stack<ll> s3;
     while (!s2.empty())
@@ -115,18 +114,34 @@ void solve()
         s2.pop();
     }
     s2 = s3;
-    rep(i, 0, n)
+    while (!(s1.empty() || s2.empty()))
     {
-        if ((!s1.empty()) && (s2.empty() || s1.top() < s2.top()))
+        ll temp = s1.top() > s2.top() ? s2.top() : s1.top();
+        q.push(temp);
+        printq(q);
+        if (temp == s2.top())
         {
-            q.push(s1.top());
-            s1.pop();
-        }
-        else if (((!s2.empty()) && (s1.empty() || s1.top() > s2.top())))
-        {
-            q.push(s2.top());
             s2.pop();
         }
+        else
+        {
+            s1.pop();
+        }
+        printst(s1);
+        printst(s2);
+    }
+    while (!s1.empty())
+    {
+        q.push(s1.top());
+        s1.pop();
+        printq(q);
+        printst(s1);
+        printst(s2);
+    }
+    while (!s2.empty())
+    {
+        q.push(s2.top());
+        s2.pop();
         printq(q);
         printst(s1);
         printst(s2);
