@@ -250,7 +250,7 @@ void solve()
 }
 int main()
 {
-    // ffst;
+    ffst;
     ll t=1;
     //cin >> t;
     while (t--)
