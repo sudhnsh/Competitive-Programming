@@ -4,6 +4,7 @@ using namespace std;
 #define rep(i,a,n) for(ll i=a;i<n;i++)
 #define ffst    ios_base::sync_with_stdio(false); cin.tie(NULL);
 #define vpair vector<pair<ll,ll> >
+#define vec vector<ll>
 #define m 1000000007
 //by sudhnsh
 void solve()
