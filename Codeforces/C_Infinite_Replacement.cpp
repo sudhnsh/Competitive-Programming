@@ -42,7 +42,7 @@ void solve()
     }
     else
     {
-        cout<<power(2,n)<<'\n';
+        cout<<(ll)pow(2,n)<<'\n';
     }
 }
 int main()
